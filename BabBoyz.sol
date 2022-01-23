@@ -187,7 +187,7 @@
     
         if (isRevealed == false) {
           return
-            "ipfs://QmYGAp3Gz1m5UmFhV4PVRRPYE3HL1AmCwEKFPxng498vfb/hidden.json";
+            "ipfs://QmdRGEsjTDXb8D81t3yUK8TSe1DqY8BuTRyRCERC65AW78/1.json";
         }
     
         return
