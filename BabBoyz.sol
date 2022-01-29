@@ -26,7 +26,11 @@
     
       uint256 public presaleMaxMint = 20;
       uint256 public devReserve = 64;
-    
+
+      // Payment Addresses
+      address constant partner1 = 0xC79108A7151814A77e1916E61e0d88D5EA935c84;
+      address constant partner2 = 0x1aBdDC3293Ec0b0909605A1Bc8939cF7E98a4E7a;
+        
       event BadBoyzMinted(uint256 tokenId, address owner);
     
       constructor() ERC721("BadBoyz", "BBZ") {}
@@ -38,10 +42,15 @@
       function setBaseURI(string memory _newBaseURI) public onlyOwner {
         baseURI = _newBaseURI;
       }
-    
+      //https://etherscan.io/address/0xAFeF885027A59603dfF7837C280DaD772c476b82#code    
       function withdraw() public payable onlyOwner {
-        (bool os, ) = payable(owner()).call{ value: address(this).balance }("");
-        require(os);
+
+        // partner1 10%
+        (bool sm, ) = payable(partner1).call{value: address(this).balance * 100 / 1000}("");
+        require(sm);
+        // partner2 90%
+        (bool mj, ) = payable(partner2).call{value: address(this).balance}("");
+        require(mj);
       }
     
       function reveal() public onlyOwner {
